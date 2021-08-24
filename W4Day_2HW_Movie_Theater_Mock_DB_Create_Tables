@@ -1,0 +1,62 @@
+-- CUSTOMER TABLE CREATION
+CREATE TABLE customer(
+	customer_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(100),
+	last_name VARCHAR(100)
+);
+
+-- STAFF TABLE CREATION
+CREATE TABLE staff(
+	staff_id SERIAL PRIMARY KEY,
+	staff_first_name VARCHAR(100),
+	staff_last_name VARCHAR(100)
+);
+
+-- MOVIE TABLE CREATION
+CREATE TABLE movie(
+	movie_id SERIAL PRIMARY KEY,
+	movie_title VARCHAR(100),
+	movie_cost NUMERIC(4,2),
+	movie_rating VARCHAR(6)
+);
+
+-- THEATER TABLE CREATION
+CREATE TABLE theater(
+	theater_id SERIAL PRIMARY KEY,
+	movie_id INTEGER NOT NULL,
+	theater_seating INTEGER,
+	FOREIGN KEY(movie_id) REFERENCES movie(movie_id)
+);
+
+-- CONCESSIONS TABLE CREATION
+CREATE TABLE concessions(
+	food_item_id SERIAL PRIMARY KEY,
+	food_item_cost NUMERIC(4,2),
+	register_number INTEGER,
+	staff_id INTEGER NOT NULL,
+	customer_id INTEGER NOT NULL,
+	FOREIGN KEY(staff_id) REFERENCES staff(staff_id),
+	FOREIGN KEY(customer_id) REFERENCES customer(customer_id)
+);
+
+-- TICKET TABLE CREATION
+CREATE TABLE ticket(
+	ticket_id SERIAL PRIMARY KEY,
+	movie_time TIMESTAMP,
+	movie_id INTEGER NOT NULL,
+	theater_id INTEGER NOT NULL,
+	customer_id INTEGER NOT NULL,
+	FOREIGN KEY(movie_id) REFERENCES movie(movie_id),
+	FOREIGN KEY(theater_id) REFERENCES theater(theater_id),
+	FOREIGN KEY(customer_id) REFERENCES customer(customer_id)
+);
+
+-- BOX OFFICE TABLE CREATION
+CREATE TABLE box_office(
+	window_id SERIAL PRIMARY KEY,
+	movie_id INTEGER,
+	staff_id INTEGER NOT NULL,
+	ticket_id INTEGER NOT NULL,
+	FOREIGN KEY(staff_id) REFERENCES staff(staff_id),
+	FOREIGN KEY(ticket_id) REFERENCES ticket(ticket_id)
+);

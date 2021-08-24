@@ -1,0 +1,89 @@
+-- INSERT STATEMENTS FOR NEW DB
+-- Customer Inserts
+INSERT INTO customer(
+	customer_id,
+	first_name,
+	last_name
+)VALUES(
+	1,
+	'Stephen',
+	'Getter'
+);
+
+-- Insert statement for staff data
+INSERT INTO staff(
+	staff_id,
+	staff_first_name,
+	staff_last_name
+)VALUES(
+	1,
+	'Herbert',
+	'Taft'
+);
+
+-- Insert Into Movie
+INSERT INTO movie(
+	movie_id,
+	movie_title,
+	movie_cost,
+	movie_rating
+)VALUES(
+	1,
+	'Godzilla vs. Flipper',
+	20.00,
+	'NC-17'
+);
+
+-- Insert into concessions
+INSERT INTO concessions(
+	food_item_id,
+	food_item_cost,
+	register_number,
+	staff_id,
+	customer_id
+)VALUES(
+	1,
+	18.00,
+	1,
+	1,
+	1
+);
+
+-- Insert into theater table
+INSERT INTO theater(
+	theater_id,
+	movie_id,
+	theater_seating
+)VALUES(
+	1,
+	1,
+	158
+);
+
+-- Insert into ticket table
+INSERT INTO ticket(
+	ticket_id,
+	movie_id,
+	theater_id,
+	movie_time,
+	customer_id
+)VALUES(
+	1,
+	1,
+	1,
+	'2021-11-11 14:30:00',
+	1
+);
+
+-- Insert into box office table
+INSERT INTO box_office(
+	window_id,
+	movie_id,
+	staff_id,
+	ticket_id
+)VALUES(
+	1,
+	1,
+	1,
+	1
+);
